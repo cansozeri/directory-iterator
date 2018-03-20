@@ -19,6 +19,8 @@ $data = new HtmlDirectoryRenderer(
 $data->render();
 </pre>
 
+<strong>Iterator Class use IteratorAggregate interface and getIterator() method for iteration.</strong>
+
 You can change easily DirectoryIterator and Renderer Type. 
 
 For example if you want to iterate a remote directory folder with a ftp connection,
