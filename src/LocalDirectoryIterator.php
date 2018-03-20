@@ -10,6 +10,6 @@ class LocalDirectoryIterator extends AbstractDirectoryIterator
 
     public function getIterator()
     {
-        return new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->root,RecursiveDirectoryIterator::SKIP_DOTS),RecursiveIteratorIterator::LEAVES_ONLY);
+        return new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->root,RecursiveDirectoryIterator::SKIP_DOTS),RecursiveIteratorIterator::SELF_FIRST);
     }
 }
