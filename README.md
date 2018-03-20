@@ -29,7 +29,7 @@ You can pass configuration with AbstractDirectoryIterator to your main Iterator 
 
 <pre>
 $data = new HtmlDirectoryRenderer(
-    new FtpDirectoryIterator('/var/www',$config),
+    new FtpDirectoryIterator('/var/www',$config)
 );
 
 $data->render();
