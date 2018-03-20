@@ -59,7 +59,7 @@ class Filters
 
     /*
      *
-     * Filters must return SPL directory File Info ( $this->directory ) or false (ending filter queue)
+     * Filters must return SPL directory File Info ( $this->directory ) or false (break out filter queue)
      *
      * */
 
@@ -98,7 +98,6 @@ class Filters
         }
         else
         {
-
             return $this->isExists($content,$filter['needle'])?$this->directory:false;
         }
 
