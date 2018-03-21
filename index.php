@@ -5,14 +5,16 @@ require __DIR__ . '/vendor/autoload.php';
 use Directory\HtmlDirectoryRenderer;
 use Directory\LocalDirectoryIterator;
 
+/*
+ *
+ * Filter is running recursive - so if you search for a dir, then try to filter by file name - then you get nothing.
+ *
+*/
+
 $filters = [
     [
-        'filter'=>'extension',
-        'extensions'=>['php', 'html', 'js', 'tpl']
-    ],
-    [
-        'filter'=>'search_in_file',
-        'needle'=>'youtube'
+        'filter'=>'search_by_name',
+        'needle'=>['isotope','jquery']
     ]
 ];
 

@@ -35,7 +35,7 @@ abstract class AbstractDirectoryRenderer implements DirectoryRendererInterface
         return $filter->filter($this->filters);
     }
 
-    public function isExists($content,$value)
+    protected function isExists($content,$value)
     {
         return strpos($content, $value) !== false;
     }

@@ -77,31 +77,69 @@ class Filters
 
     /**
      * @param $filter
+     * @var   string  $type ['file'|'dir']
+     * @return bool|\SplFileInfo
+     */
+    protected function SearchByNameFilter($filter)
+    {
+        if(isset($filter['type']))
+        {
+            if($this->directory->getType()!=$filter['type'])
+            {
+                return false;
+            }
+        }
+
+        return $this->search($this->directory->getFilename(),$filter['needle']);
+
+    }
+
+    /**
+     * @param $filter
      * @return bool|\SplFileInfo
      */
     protected function SearchInFileFilter($filter)
     {
-
         if(!$this->directory->isFile())
         {
-            return $this->directory;
+            return false;
         }
 
         $content = file_get_contents($this->directory);
 
-        if(is_array($filter['needle']))
+        return $this->search($content,$filter['needle']);
+    }
+
+    /**
+     * @return bool|\SplFileInfo
+     */
+    protected function DirectoryFilter()
+    {
+        return $this->directory->isDir()?$this->directory:false;
+    }
+
+    /**
+     * @param $content
+     * @param $needle
+     * @return bool|\SplFileInfo
+     */
+    protected function search($content, $needle)
+    {
+        if(is_array($needle))
         {
-            foreach ($filter['needle'] as $value)
+            $found = [];
+
+            foreach ($needle as $value)
             {
-               return $this->isExists($content,$value)?$this->directory:false;
+                if($this->isMatch($content,$value)) $found[$value]=1;
             }
+
+            return !empty($found)?$this->directory:false;
         }
         else
         {
-            return $this->isExists($content,$filter['needle'])?$this->directory:false;
+            return $this->isMatch($content,$needle)?$this->directory:false;
         }
-
-        return $this->directory;
     }
 
     /**
@@ -109,7 +147,7 @@ class Filters
      * @param $value
      * @return bool
      */
-    protected function isExists($content, $value)
+    protected function isMatch($content, $value)
     {
         return strpos($content, $value) !== false;
     }
