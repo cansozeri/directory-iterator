@@ -1,5 +1,5 @@
-# Directory Iterator
-Directory Iterator is a way to iterate your folder or files with OOP structure.
+# Iterators Magic
+Iterators magic is a way to iterate everything (folder - files - pdo vs.) with OOP structure.
 
 Gives you, the separation of concerns and extendable class structure while you have an iterator with a renderer class.
 
@@ -36,7 +36,7 @@ $data = new HtmlDirectoryRenderer(
 
 $data->render();
 </pre>
-
+<h2>Filters</h2>
 You can define filters to filter your iteration. You can create custom filter easily in your Filter class and you can just define with an array. 
 
 <pre>

@@ -1,5 +1,5 @@
 <?php
-namespace Directory;
+namespace Magic;
 
 use IteratorAggregate;
 

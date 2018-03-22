@@ -1,5 +1,5 @@
 <?php
-namespace Directory;
+namespace Magic;
 
 class HtmlDirectoryRenderer extends AbstractDirectoryRenderer
 {

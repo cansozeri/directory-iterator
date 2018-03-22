@@ -1,16 +1,15 @@
 <?php
-namespace Directory;
+namespace Magic;
 
 
 class Filters
 {
-    protected $directory;
+    protected $filtered;
     protected $filters;
-    protected $result;
 
-    public function __construct(\SplFileInfo $directory)
+    public function __construct(\SplFileInfo $filtered)
     {
-        $this->directory = $directory;
+        $this->filtered = $filtered;
     }
 
     /**
@@ -27,15 +26,15 @@ class Filters
                 throw new \InvalidArgumentException('There is no filter option. Please use filter option in your array');
             }
 
-            if(!$this->directory)
+            if(!$this->filtered)
             {
                 break;
             }
 
-            $this->directory =  $this->createFilter($filter);
+            $this->filtered =  $this->createFilter($filter);
         }
 
-        return $this->directory;
+        return $this->filtered;
     }
 
     /**
@@ -59,7 +58,7 @@ class Filters
 
     /*
      *
-     * Filters must return SPL directory File Info ( $this->directory ) or false (break out filter queue)
+     * Filters must return SPL filtered File Info ( $this->filtered ) or false (break out filter queue)
      *
      * */
 
@@ -72,7 +71,7 @@ class Filters
     {
         $extensions = $filter['extensions'];
 
-        return in_array($this->directory->getExtension(), $extensions) === true?$this->directory:false;
+        return in_array($this->filtered->getExtension(), $extensions) === true?$this->filtered:false;
     }
 
     /**
@@ -84,13 +83,13 @@ class Filters
     {
         if(isset($filter['type']))
         {
-            if($this->directory->getType()!=$filter['type'])
+            if(!$this->ListByTypeFilter($filter))
             {
                 return false;
             }
         }
 
-        return $this->search($this->directory->getFilename(),$filter['needle']);
+        return $this->search($this->filtered->getFilename(),$filter['needle']);
 
     }
 
@@ -100,22 +99,28 @@ class Filters
      */
     protected function SearchInFileFilter($filter)
     {
-        if(!$this->directory->isFile())
+        if(!$this->filtered->isFile())
         {
             return false;
         }
 
-        $content = file_get_contents($this->directory);
+        $content = file_get_contents($this->filtered);
 
         return $this->search($content,$filter['needle']);
     }
 
     /**
+     * @param $filter
      * @return bool|\SplFileInfo
      */
-    protected function DirectoryFilter()
+    protected function ListByTypeFilter($filter)
     {
-        return $this->directory->isDir()?$this->directory:false;
+        if(!isset($filter['type']))
+        {
+            throw new \InvalidArgumentException('Please specify type as [file|dir]');
+        }
+
+        return $this->filtered->getType()==$filter['type']?$this->filtered:false;
     }
 
     /**
@@ -134,11 +139,11 @@ class Filters
                 if($this->isMatch($content,$value)) $found[$value]=1;
             }
 
-            return !empty($found)?$this->directory:false;
+            return !empty($found)?$this->filtered:false;
         }
         else
         {
-            return $this->isMatch($content,$needle)?$this->directory:false;
+            return $this->isMatch($content,$needle)?$this->filtered:false;
         }
     }
 

@@ -2,8 +2,8 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Directory\HtmlDirectoryRenderer;
-use Directory\LocalDirectoryIterator;
+use Magic\HtmlDirectoryRenderer;
+use Magic\LocalDirectoryIterator;
 
 /*
  *
@@ -13,8 +13,8 @@ use Directory\LocalDirectoryIterator;
 
 $filters = [
     [
-        'filter'=>'search_by_name',
-        'needle'=>['isotope','jquery']
+        'filter'=>'list_by_type',
+        'type'=>'dir'
     ]
 ];
 

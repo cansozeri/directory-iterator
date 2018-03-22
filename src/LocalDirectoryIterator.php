@@ -1,6 +1,6 @@
 <?php
 
-namespace Directory;
+namespace Magic;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;

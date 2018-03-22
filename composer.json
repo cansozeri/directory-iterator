@@ -1,5 +1,34 @@
 {
-  "autoload": {
-    "psr-4": {"Directory\\": "src/"}
+  "name" : "cansozeri/iterators-magic",
+  "type" : "library",
+  "license": "MPL-2.0",
+  "description" : "OOP structure extends the PHP \\Iterator class",
+  "homepage": "https://github.com/cansozeri/iterators-magic",
+  "keywords": [
+    "php",
+    "directory",
+    "search",
+    "directoryiterator",
+    "directory iterator",
+    "directory search",
+    "file search",
+    "oop iteration",
+    "ftp directory search",
+    "iterators",
+    "filters"
+  ],
+  "authors" : [
+    {
+      "name" : "Can Sözeri",
+      "email" : "cansozeri@hotmail.com"
+    }
+  ],
+  "require" : {
+    "php" : ">=5.4"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "Magic\\" : "src/"
+    }
   }
 }
