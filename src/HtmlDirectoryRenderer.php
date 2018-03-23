@@ -4,20 +4,28 @@ namespace Magic;
 class HtmlDirectoryRenderer extends AbstractDirectoryRenderer
 {
 
-    protected function renderDirectory(\SplFileInfo $directory)
+    /**
+     * @param $dirs
+     */
+    protected function renderDirectory($dirs)
     {
-        if($directory->isReadable())
+        foreach($dirs as $directory)
         {
-            $directory = $this->filter($directory);
-
-            if($directory)
+            /** @var \SplFileInfo $directory */
+            if($directory->isReadable())
             {
-                echo '<p>'.$directory.'</p>';
+                $directory = $this->filter($directory);
+
+                if($directory)
+                {
+                    echo '<p>'.$directory.'</p>';
+                }
+            }
+            else
+            {
+                echo '<p><span style="color: #761c19;font-weight: bold;">ERROR : </span> '.$directory.' <span style="color: #761c19;font-weight: bold;">could not be opened!!</span></p>';
             }
         }
-        else
-        {
-            echo '<p><span style="color: #761c19;font-weight: bold;">ERROR : </span> '.$directory.' <span style="color: #761c19;font-weight: bold;">could not be opened!!</span></p>';
-        }
+
     }
 }

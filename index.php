@@ -2,8 +2,8 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Magic\HtmlDirectoryRenderer;
-use Magic\LocalDirectoryIterator;
+use Magic\TreeDirectoryRenderer;
+use Magic\TreeDirectoryIterator;
 
 /*
  *
@@ -14,13 +14,12 @@ use Magic\LocalDirectoryIterator;
 $filters = [
     [
         'filter'=>'list_by_type',
-        'type'=>'dir'
+        'type'=>'file'
     ]
 ];
 
-$data = new HtmlDirectoryRenderer(
-    new LocalDirectoryIterator('/var/www/playground'),
-    $filters
+$data = new TreeDirectoryRenderer(
+    new TreeDirectoryIterator('/var/www/playground')
 );
 
 $data->render();

@@ -16,11 +16,7 @@ abstract class AbstractDirectoryRenderer implements DirectoryRendererInterface
 
     public function render()
     {
-        $dirs = $this->iterator->getIterator();
-
-        foreach ($dirs as $dir) {
-            $this->renderDirectory($dir);
-        }
+        $this->renderDirectory($this->iterator->getIterator());
     }
 
     protected function filter($directory)
@@ -40,5 +36,5 @@ abstract class AbstractDirectoryRenderer implements DirectoryRendererInterface
         return strpos($content, $value) !== false;
     }
 
-    abstract protected function renderDirectory(\SplFileInfo $directory);
+    abstract protected function renderDirectory($directory);
 }
