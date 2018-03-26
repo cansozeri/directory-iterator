@@ -36,6 +36,23 @@ $data = new HtmlDirectoryRenderer(
 
 $data->render();
 </pre>
+<strong>TreeIterator</strong>
+
+TreeIterator example of view folder structure as tree view.
+<pre>
+[tree]
+├ /var/www/playground/app
+├ /var/www/playground/package.json
+├ /var/www/playground/gulpfile.js
+├ /var/www/playground/.git
+├ /var/www/playground/config.js
+├ /var/www/playground/.babelrc
+├ /var/www/playground/readme.md
+├ /var/www/playground/.gitignore
+├ /var/www/playground/merger
+├ /var/www/playground/public
+└ /var/www/playground/.idea
+</pre>
 <h2>Filters</h2>
 You can define filters to filter your iteration. You can create custom filter easily in your Filter class and you can just define with an array. 
 
