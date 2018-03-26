@@ -40,6 +40,13 @@ $data->render();
 
 TreeIterator example of view folder structure as tree view.
 <pre>
+$data = new TreeDirectoryRenderer(
+    new TreeDirectoryIterator('/var/www/playground')
+);
+
+$data->render();
+
+//Output
 [tree]
 ├ /var/www/playground/app
 ├ /var/www/playground/package.json
